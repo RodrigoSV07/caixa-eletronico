@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aula 3 - Javascript</title>
+
+	<script>
+		var ola = prompt("Qual é o seu nome? ");
+		alert("Olá , " + ola + " é um prazer ter você por aqui! Bem Vindo Ao HLPBank");
+		let x = 0;
+		var saldo = 100.5; //Float
+		var senha = 3589
+
+		function inicio() {
+
+			var escolha = parseInt(prompt('Selecione uma opção, 1.Saldo | 2.Extrato | 3.Saque | 4.Depósito | 5.Transferência | 6.Sair'));
+
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+					break;
+
+				case 2:
+					ver_extrato();
+					break;
+
+				case 3:
+					fazer_saque();
+					break;
+
+				case 4:
+					fazer_deposito();
+					break;
+
+				case 5:
+					fazer_transferencia();
+					break;
+
+				case 6:
+					sair();
+					break;
+
+			}
+		}
+
+
+		function ver_saldo() {
+
+
+			var valdSenha = parseInt(prompt("Por Favor, informe a sua senha: "));
+			if (valdSenha == senha) {
+
+
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+
+			}
+		}
+
+
+		function fazer_deposito() {
+
+			var valdSenha = parseInt(prompt("Por Favor, informe a sua senha: "));
+			if (valdSenha == senha) {
+			
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um valor valido.');
+				fazer_deposito();
+			}
+
+			else if (deposito <=0 ) {
+				alert("Operação não autorizada");
+				fazer_deposito()
+			}
+
+			 else {
+				saldo += deposito;
+				//saldo = saldo + deposito;
+				ver_saldo();
+			}
+		  }
+		}
+
+
+		function fazer_saque() {
+
+			var valdSenha = parseInt(prompt("Por Favor, informe a sua senha: "));
+			if (valdSenha == senha) {
+			
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+				//saldo = saldo - saque;
+				ver_saldo();
+			}
+
+		  }	
+
+		}
+
+
+		function ver_extrato() {
+			var valdSenha = parseInt(prompt("Por Favor, informe a sua senha: "));
+			if (valdSenha == senha) {
+				alert("Compras aprovadas: Bar Do Valesco. R$:20,50 || Compra Aprovada: PadariaManezes. R$:10,90 || Compra Aprovada: LojaNavis. R$:320,00");
+				ver_extrato();
+			}
+			else {
+				alert("Senha Incorreta");
+			}
+		}
+
+
+		function fazer_transferencia() {
+
+
+			var valdSenha = parseInt(prompt("Por Favor, informe a sua senha: "));
+			if (valdSenha == senha) {
+
+
+		   var  numconta = parseInt(prompt("Insira o numero da conta"));
+
+           if(isNaN(numconta) || numconta == ''){
+
+	       alert("Insira o numero de uma conta válida");
+	       fazer_transferencia();
+
+           }
+
+		   var transfe = parseFloat(prompt("Insira o valor para transferir"));
+
+              if(isNaN(transfe) || transfe === ''){
+
+	              alert("Insira um valor valido para a transferência");
+	              fazer_transferencia();
+
+           }
+
+		   else if (transfe > saldo){
+
+                  alert("Você não possui saldo");
+
+				  fazer_transferencia(); 
+
+           }
+
+		   else{
+
+                 saldo -= transfe;
+                 alert("Transferência Feita com sucesso");
+                 ver_saldo();
+
+           } 
+
+		}
+			
+
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6.');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert("Obrigado por acessar os serviços do nosso banco HLPBank")
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		inicio();
+		
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
